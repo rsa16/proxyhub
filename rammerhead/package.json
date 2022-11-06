@@ -1,0 +1,56 @@
+{
+  "name": "rammerhead",
+  "version": "1.2.41",
+  "description": "User friendly web proxy powered by testcafe-hammerhead",
+  "main": "src/index.js",
+  "scripts": {
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
+    "start": "node src/server.js",
+    "build": "node src/build.js",
+    "bstart": "npm run build && npm run start",
+    "test": "npm run format && npm run lint && npm run build",
+    "lint": "eslint -c .eslintrc.json --ext .js src",
+    "format": "prettier --write 'src/**/*.js'",
+    "clientes5": "es-check es5 src/client/*.js public/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binary-person/rammerhead.git"
+  },
+  "author": "Simon Cheng <simoncheng559@gmail.com> (https://github.com/binary-person)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binary-person/rammerhead/issues"
+  },
+  "homepage": "https://github.com/binary-person/rammerhead#readme",
+  "dependencies": {
+    "async-exit-hook": "^2.0.1",
+    "graceful-fs": "^4.2.10",
+    "graceful-js": "^1.0.0",
+    "jquery": "^3.6.1",
+    "jsdom": "^20.0.0",
+    "keyv-lru-files": "github:binary-person/keyv-lru-files#patch-1",
+    "mime": "^2.5.2",
+    "sticky-session-custom": "^1.2.0",
+    "testcafe-hammerhead": "24.5.18",
+    "uglify-js": "^3.15.3",
+    "uuid": "^8.3.2",
+    "ws": "^8.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "dotenv-flow": "^3.2.0",
+    "eslint": "^7.32.0",
+    "npm-force-resolutions": "0.0.10",
+    "prettier": "^2.3.2"
+  },
+  "resolutions": {
+    "tmp": "0.2.1"
+  },
+  "files": [
+    "src/*",
+    "CHANGELOG.md",
+    "package.json",
+    "README.md"
+  ]
+}

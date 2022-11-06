@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link href="css/login.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1 id="header">Enter Password</h1>
+    <p id="error" style="display: none;"></p>
+    <form method="post" class="proxyForm" action="/geogame/auth">
+      <input type="password" name="password" id="password" placeholder="Password" required/>
+      <div class="buttons">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const errorCodes = ["invalid_error", "auth_getrequest"]
+
+    if (urlParams.has("errorCode"))
+    {
+        const error = urlParams.get("errorCode");
+        const el = document.getElementById("error");
+        const header = document.getElementById("header");
+
+        el.style.display = 'block';
+        el.style.marginBottom = '10px';
+        el.style.marginTop = '5px';
+        el.style.color = 'red';
+
+        header.style.margin = '0';
+
+        switch (errorCodes[error])
+        {
+            case "invalid_error":
+                el.innerText = "L BOZO + RATIO LMAO YOU GOT THE PASSWORD WRONG IDIOT"
+                break;
+
+            case "auth_getrequest":
+                el.innerText = "lol stop tryna bot the system idiot"
+                break;
+
+            default:
+                el.innerText = "invalid error code..."
+                break;
+        }
+
+    }
+  </script>
+</html>

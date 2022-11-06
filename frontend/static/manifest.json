@@ -1,0 +1,9 @@
+{
+    "name": "Proxy Browser",
+    "short_name": "ProxyBrowse",
+    "display": "standalone",
+    "background_color": "#202124",
+    "theme_color": "#202124",
+    "scope": "/geogame/",
+    "start_url": "/geogame/"
+}

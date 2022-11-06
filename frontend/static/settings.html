@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/settings.css" />
+    <title>Cats are cool!</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <h1 style="text-align: center">Settings</h1>
+        <button id="closeBtn" onclick="closebtn()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <button class="selected menu-btn" id="proxy_setting">
+            <i class="fa-sharp fa-solid fa-globe"></i> Proxy
+          </button>
+          <button class="menu-btn" id="appearance_setting">
+            <i class="fa-solid fa-paintbrush"></i> Appearance
+          </button>
+          <button class="menu-btn" id="tab cloak_setting">
+            <i class="fa-solid fa-masks-theater"></i> Tab_Cloak
+          </button>
+        </div>
+        <div class="main"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(".menu-btn").click(function () {
+      var $this = $(this);
+      $(".selected").removeClass("selected");
+      $(this).addClass("selected");
+      current_setting = $(this)
+        .text()
+        .replace(" ", "")
+        .replace(/^\s+|\s+$/g, "")
+        .toLowerCase();
+      $(".main").empty();
+      menuLoad(current_setting);
+      reloadCustomDropdowns(settings, current_setting);
+    });
+
+    function menuLoad(current_setting) {
+      $(".menu-btn").each(function () {
+        var $this = $(this);
+        for (let [key, value] of Object.entries(settings)) {
+          console.log(`Key: ${key}, this text: ${current_setting}`);
+          if (current_setting === key && $(".main").is(":empty")) {
+            value.forEach((item, index) => {
+              console.log(`item type: ${item["type"]}`);
+              if (item["type"] === "list")
+              {
+                let setting_name = Object.values(item["setting_name"])[0];
+                let current = item["current"];
+                let type = item["type"];
+                let options = item["options"];
+            
+                console.log("lets do this");
+                let template_list = `
+                        <div style="margin-left: 10px" id=${key}>
+                            <p>${setting_name}</p>
+                            <select>
+                            </select>
+                        </div>
+                    `;
+
+                $(".main").append(template_list);
+
+                options.forEach((optionObj, index) => {
+                  for (let [value, text] of Object.entries(optionObj)) {
+                    $("select", `#${key}`).append(
+                      `<option value=${value}>${text}</option>`
+                    );
+                  }
+                });
+                console.log("nahh");
+              } else if (item["type"] === "input_w_btn")
+              {
+                let setting_name = Object.values(item["setting_name"])[0];
+                let current = item["current"];
+                let type = item["type"];
+                let button_text = Object.values(item["button_text"])[0];
+                let placeholder = item["placeholder"];
+
+                console.log("hilo shiloh")
+                let template = `
+                <div class="input-w-btn" style="margin-left: 30px" id=${key}>
+                  <p>${setting_name}</p>
+                  <p>${item["top_desc"]}</p>
+                  <input class="optioninput" placeholder="${placeholder}"/>
+                  <button class="optionbtn">${button_text}</button>
+                </div>
+                `
+
+                $(".main").append(template);
+                $("button", `#${key}`).click(async () => {
+                  console.log("was dis clicked");
+                  settings[key].forEach((item, index) => {
+                    settings[key][index]["current"] = $("input", `#${key}`).val();
+                  })
+                  let url = settings["tab_cloak"][0]["current"].trim();
+
+                  if (!isUrl(url)) url = "https://www.google.com/search?q=" + url;
+                  else if (!(url.startsWith("https://") || url.startsWith("http://")))
+                    url = "https://" + url;
+
+                  let response = await bare.fetch(url);
+                  var responseText = await response.text();
+                  var parsedResponse = new window.DOMParser().parseFromString(
+                    responseText,
+                    "text/html"
+                  );
+
+                  document.title = parsedResponse.title,
+                  $("#favicon").attr("href", `https://icon.horse/icon/${url.replace("https://", "")}`)
+                });
+                
+              }
+            })
+            break;
+          }
+        }
+      });
+    }
+
+    function reloadCustomDropdowns(settings, current_setting) {
+      $("select").each(function () {
+        var $this = $(this),
+          numberOfOptions = $(this).children("option").length;
+        var orig = $(this);
+
+        $this.addClass("select-hidden");
+        $this.wrap('<div class="select"></div>');
+        $this.after('<div class="select-styled"></div>');
+
+        var $styledSelect = $this.next("div.select-styled");
+        $styledSelect.text($this.children("option").eq(0).text());
+
+        var $list = $("<ul />", {
+          class: "select-options",
+        }).insertAfter($styledSelect);
+
+        for (var i = 0; i < numberOfOptions; i++) {
+          $("<li />", {
+            text: $this.children("option").eq(i).text(),
+            rel: $this.children("option").eq(i).val(),
+          }).appendTo($list);
+          //if ($this.children('option').eq(i).is(':selected')){
+          //  $('li[rel="' + $this.children('option').eq(i).val() + '"]').addClass('is-selected')
+          //}
+        }
+
+        var $listItems = $list.children("li");
+
+        $styledSelect.click(function (e) {
+          e.stopPropagation();
+          $("div.select-styled.active")
+            .not(this)
+            .each(function () {
+              $(this).removeClass("active").next("ul.select-options").hide();
+            });
+          $(this).toggleClass("active").next("ul.select-options").toggle();
+        });
+
+        $this.change(() => {
+            $listItems.each(function () {
+                if ($this.val() === $(this).attr("rel")) {
+                    $(this).click();
+                }
+                console.log("hebi");
+            })
+        })
+
+        const getKeyByValue = (object, value) => {
+            return Object.keys(object).find(key => object[key] === value);
+        }
+
+        
+        $listItems.click(function (e) {
+          e.stopPropagation();
+          $styledSelect.text($(this).text()).removeClass("active");
+          $this.val($(this).attr("rel"));
+          $list.hide();
+          settings[current_setting].forEach((item, index) => {
+            console.log(`previons: ${$this.parent().prev().text()}`)
+            console.log(`thing thing: ${getKeyByValue(item["setting_name"], $this.parent().prev().text())}`)
+
+            settings[current_setting][index]["current"] = $(this).attr("rel");
+            console.log(`BOPPITY BOP BOP ${settings[current_setting][index]["current"]}`)
+          })
+
+          //console.log($this.val());
+        });
+
+        $(document).click(function () {
+          $styledSelect.removeClass("active");
+          $list.hide();
+        });
+
+        settings[current_setting].forEach((item, index) => {
+            let cur = settings[current_setting][index]["current"];
+            $this.val(cur).change();
+        })
+      });
+    }
+
+    function closebtn() {
+        $(".settings").fadeOut(function () {
+          $(".settings").css("height", "0");
+        });
+      }
+    menuLoad(current_setting);
+    reloadCustomDropdowns(settings, current_setting);
+  </script>
+</html>

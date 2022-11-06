@@ -1,0 +1,14 @@
+tunnel: 3986cb12-9f2c-4dd7-9f4e-cb3fa2884f43
+credentials-file: C:\Users\sipne\.cloudflared\3986cb12-9f2c-4dd7-9f4e-cb3fa2884f43.json
+
+ingress:
+  - hostname: catsarecool.tk
+    service: http://localhost:8001
+
+  - hostname: rh.catsarecool.tk
+    service: http://localhost:443
+
+  - hostname: uv.catsarecool.tk
+    service: http://localhost:8080
+
+  - service: http_status:404

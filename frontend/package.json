@@ -1,0 +1,39 @@
+{
+  "dependencies": {
+    "@material/mwc-fab": "^0.27.0",
+    "@tomphttp/bare-server-node": "^1.0.2-beta-readme2",
+    "address": "^1.2.0",
+    "bare-server-node": "github:tomphttp/bare-server-node",
+    "bcrypt": "^5.0.1",
+    "chalk": "^5.0.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv-expand": "^8.0.3",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.18.1",
+    "express-http-proxy": "^1.6.3",
+    "express-session": "^1.17.3",
+    "express-transform-bare-module-specifiers": "^1.0.4",
+    "jquery": "^3.6.1",
+    "node-static": "^0.7.11",
+    "rammerhead": "https://git.holy.how/attachments/7017bba8-f92a-4849-9d37-24bf47e437cb",
+    "rimraf": "^3.0.2",
+    "website": "https://git.holy.how/attachments/3e6ed479-2544-4568-90f9-23ad40730f97"
+  },
+  "name": "uv-app",
+  "version": "1.0.0",
+  "description": "Ultraviolet instance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
+    "build": "node src/build.js",
+    "format": "prettier --write 'src/**/*.js'"
+  },
+  "keywords": [
+    "proxy"
+  ],
+  "author": "",
+  "license": "GPL-3.0-or-later"
+}

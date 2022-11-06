@@ -1,0 +1,1 @@
+{"version":"1.0.0","name":"uv-app","dependencies":{"@tomphttp/bare-server-node":{"version":"1.0.2-beta-typings3"},"bare-server-node":{"version":"1.0.2-beta-readme2"},"node-static":{"version":"0.7.11"}}}

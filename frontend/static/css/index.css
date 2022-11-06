@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@import url('https://unpkg.com/@fortawesome/fontawesome-free@5.15.4/css/all.min.css');
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url(https://cdn.jsdelivr.net/npm/chrome-tabs@5.4.0/css/chrome-tabs.css);
+@import url(https://cdn.jsdelivr.net/npm/chrome-tabs@5.4.0/css/chrome-tabs-dark-theme.css);
+
+.newTab {
+    flex: 1 1 auto;
+}
+
+.browserTab {
+    display: flex;
+    flex-direction: column;
+}
+.addressbar {
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    display: flex;
+    flex: 1 1;
+    flex-wrap: nowrap;
+    flex-flow: row;
+    height: 32px;
+    min-width: 0;
+}
+.addressbar-btn:hover {
+    background-color: #dcdee0;
+}
+.addressbar-btn:active {
+    background-color: #bec0c2;
+}
+.addressbar-urlbar {
+    background-color: transparent;
+    border: none;
+    flex: 1 1;
+    caret-color: white;
+    font-size: 16px;
+    color: white;
+    min-width: 0;
+    outline: none;
+    overflow: hidden;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.addressbar-urlbar::selection {
+    background-color: #9cc3f5;
+    height: 28px;
+}
+.addressbar-grey {
+    color: grey;
+}
+.addressbar-menu-item {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0 15px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.addressbar-menu-item-icon-wrapper {
+    margin-right: 20px;
+    width: 20px;
+}
+.addressbar-menu-item-icon {
+    fill: var(--browser-icon-color);
+    height: 20px;
+    width: 20px;
+}
+.addressbar-menu-item p {
+    margin: 12px 0;
+}
+.addressbar-menu {
+    align-self: flex-start;
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    outline: none;
+    overflow: hidden;
+    padding-bottom: 10px;
+    position: relative;
+    top: -4px;
+    white-space: nowrap;
+    z-index: 100;
+}
+.addressbar-menu input {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+    width: 100%;
+}
+
+.browser-bar {
+    align-items: center;
+    background-color: #323639;
+    border-bottom: 1px solid #323639;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-flow: row;
+    height: 36px;
+    padding: 4px 15px;
+}
+
+.browser-bar-btn {
+    fill: var(--browser-icon-color);
+    stroke: var(--browser-icon-color);
+    border-radius: 50%;
+    height: 20px;
+    padding: 6px;
+    transition: 0.2s;
+    width: 20px;
+    color: var(--browser-icon-color);
+    text-align: center;
+}
+.browser-bar-btn-enabled:hover {
+    background-color: #2c2e33;
+}
+.browser-bar-btn-enabled:active {
+    background-color: #d8d8d8;
+}
+.browser-bar-btn-disabled {
+    fill: #5f6368;
+    stroke: #5f6368;
+}
+.context-menu {
+    background-color: #fff;
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.4);
+    outline: none;
+    padding: 5px 0;
+    position: absolute;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    word-break: break-all;
+    z-index: 1000;
+}
+.context-menu-items,
+.context-menu-items span {
+    margin: 0;
+}
+.context-menu-items-disabled {
+    color: rgba(0, 0, 0, 0.5);
+}
+.context-menu-items-enabled:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.browser-tab {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: hidden;
+}
+.browser-tab-content {
+    flex: 1 1;
+}
+.browser-tab-content-iframe {
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+:root {
+    --browser-icon-color: #babcbe;
+    --gray-text: #555;
+    --gray-border: #777;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    vertical-align: baseline;
+}
+a {
+    color: #977b00;
+    transition: 0.2s;
+}
+a:hover {
+    color: #cfa900;
+}
+.browser {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.chrome-tabs {
+    padding-right: 50px;
+}
+.chrome-tabs .chrome-tab:last-child .chrome-tab-dividers:after {
+    opacity: 1;
+}
+.chrome-tabs-newtab-btn {
+    position: absolute;
+    top: 0;
+}
+.chrome-tabs-newtab-btn svg {
+    height: 30px;
+    margin-left: 12px;
+    margin-top: 10px;
+    width: 30px;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+* {
+    font-family: Roboto;
+}
+
+body {
+    margin: 0;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    animation: fadeInAnimation ease-in-out 0.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.fa-magnifying-glass {
+    color: white;
+}
+
+.settings {
+    width: 100%;
+    height: 0;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10%;
+}
+
+.logo {
+    width: 150px;
+}
+
+.logo-wrapper .text {
+    font-size: 75px;
+    font-family: "Roboto";
+    color: #FFF;
+}
+
+.logo-wrapper h1 {
+    color: white;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    margin-top: auto;
+    width: 100%;
+    align-self: center;
+    height: 80px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+}
+
+footer a,
+footer span {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 15px;
+}
+
+footer p {
+    color: rgba(253, 253, 253, 0.514);
+    word-wrap: break-word;
+    text-align: center;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.desc {
+    display: flex;
+    justify-content: center;
+}
+
+.desc p {
+    width: 560px;
+    color: rgba(253, 253, 253, 0.514);
+    text-align: center;
+}
+
+form input {
+    background: none;
+    font-family: inherit;
+    padding: 0px 17px;
+    height: 48px;
+    border: 1px solid rgb(255, 255, 255, .2);
+    color: var(--text-color);
+    outline: none;
+    width: 350px;
+    margin-top: 5px;
+    border-radius: 50px;
+    color: #FFF;
+}
+
+form input:focus {
+    border: 1px solid rgba(253, 253, 253, 0.514);
+    border-radius: 50px;
+}
+
+.proxyForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.proxyForm button {
+    color: white;
+    outline: none;
+    background-color: transparent;
+    margin-top: 10px;
+    border: 1px solid rgb(255, 255, 255, .2);
+    width: 100px;
+    height: 35px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+.proxyForm button:hover {
+    background-color: white;
+    color: black;
+}
